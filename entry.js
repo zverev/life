@@ -1,4 +1,4 @@
-let field = createGliderField(64, 64)
+let field = createRandomField(64, 64, 0.1)
 
 window.addEventListener('load', function (ev) {
   const container = document.createElement('div')
@@ -49,12 +49,12 @@ function getNeighboursNumber(field, y, x) {
   return c
 }
 
-function createRandomField(w, h) {
+function createRandomField(w, h, chance) {
   let ar = []
   for (let j = 0; j < h; j++) {
     ar.push([])
     for (let i = 0; i < w; i++) {
-      ar[j].push(Math.random() > 0.96 ? true : false)
+      ar[j].push(Math.random() < chance ? true : false)
     }
   }
   return ar
