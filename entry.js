@@ -1,14 +1,60 @@
+let field = createRandomField(64, 64)
+
 window.addEventListener('load', function (ev) {
-  const field = createRandomField(64, 64)
-  document.body.appendChild(createFieldEl(field))
+  const container = document.createElement('div')
+  document.body.appendChild(container)
+
+  setInterval(() => {
+    field = turn(field)
+    refresh()
+  }, 100)
+
+  function refresh() {
+    container.innerHTML = ''
+    container.appendChild(createFieldEl(field))
+  }
 })
+
+function turn(field) {
+  return field.map((row, j) => {
+    return row.map((cell, i) => cellLogic(cell, getNeighboursNumber(field, j, i)))
+  })
+}
+
+function cellLogic(isAlive, nNeighbours) {
+  if (isAlive) {
+    if (nNeighbours == 2 || nNeighbours == 3) {
+      return true
+    } else {
+      return false
+    }
+  } else {
+    if (nNeighbours == 3) {
+      return true
+    } else {
+      return false
+    }
+  }
+}
+
+function getNeighboursNumber(field, y, x) {
+  let c = 0
+  for (let j = y - 1; j < y + 2; j++) {
+    for (let i = x - 1; i < x + 2; i++) {
+      if (j != y || i != x) {
+        c += (field[j] && field[j][i]) ? 1 : 0
+      }
+    }
+  }
+  return c
+}
 
 function createRandomField(w, h) {
   let ar = []
   for (let j = 0; j < h; j++) {
     ar.push([])
     for (let i = 0; i < w; i++) {
-      ar[j].push(Math.random() > 0.5 ? true : false)
+      ar[j].push(Math.random() > 0.96 ? true : false)
     }
   }
   return ar

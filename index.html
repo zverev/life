@@ -5,8 +5,9 @@
     <title>game of life</title>
     <script src="entry.js" charset="utf-8"></script>
     <style>
-      .row { height: 5px; }
-      .cell { display: inline-block; width: 5px; height: 5px; background: #fff; }
+      .field { display: flex; flex-direction: column; }
+      .row { display: flex; flex-direction: row; height: 5px; }
+      .cell { display: block; width: 5px; height: 5px; background: #fff; }
       .cell.cell_active { background: #222; }
     </style>
   </head>
