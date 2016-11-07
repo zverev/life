@@ -2,6 +2,7 @@ let field = createRandomField(64, 64, 0.1)
 
 window.addEventListener('load', function (ev) {
   const container = document.createElement('div')
+  container.className = 'container'
   document.body.appendChild(container)
 
   setInterval(() => {
