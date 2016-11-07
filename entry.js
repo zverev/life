@@ -1,4 +1,4 @@
-let field = createRandomField(64, 64)
+let field = createGliderField(64, 64)
 
 window.addEventListener('load', function (ev) {
   const container = document.createElement('div')
@@ -57,6 +57,22 @@ function createRandomField(w, h) {
       ar[j].push(Math.random() > 0.96 ? true : false)
     }
   }
+  return ar
+}
+
+function createGliderField(w, h) {
+  let ar = []
+  for (let j = 0; j < h; j++) {
+    ar.push([])
+    for (let i = 0; i < w; i++) {
+      ar[j].push(false)
+    }
+  }
+  ar[0][1] = true
+  ar[1][2] = true
+  ar[2][0] = true
+  ar[2][1] = true
+  ar[2][2] = true
   return ar
 }
 
